@@ -1,4 +1,14 @@
 "jobs":
+  "terraform":
+    "needs": []
+    "runs-on": "ubuntu-latest"
+    "steps":
+    - "uses": "actions/checkout@v1"
+    - "name": "Build terraform"
+      "run": |
+        docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }} quay.io
+        docker build -f terraform/Dockerfile -t quay.io/johannweging/terraform:latest ./terraform
+        docker push quay.io/johannweging/terraform:latest
   "vault2env":
     "needs": []
     "runs-on": "ubuntu-latest"

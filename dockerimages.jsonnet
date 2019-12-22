@@ -32,6 +32,7 @@ local pipeline(images) = {
 
 local images = [
   { image: 'vault2env', needs: [] },
+  { image: 'terraform', needs: [] },
   // { image: 'homeassistant', needs: [] },
   // { image: 'postgres', needs: ['vault2env'] },
 ];

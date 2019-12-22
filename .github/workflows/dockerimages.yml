@@ -1,0 +1,16 @@
+"jobs":
+  "vault2env":
+    "needs": []
+    "runs-on": "ubuntu-latest"
+    "steps":
+    - "uses": "actions/checkout@v1"
+    - "name": "Build vault2env"
+      "run": |
+        docker login -u ${{ sercrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }} quay.io
+        docker build -f vault2env/Dockerfile -t quay.io/johannweging/vault2env:latest ./vault2env
+        docker push quay.io/johannweging/vault2env:latest
+"name": "Build Docker Images"
+"on":
+  "push": {}
+  "schedule":
+  - "cron": "0 12 * * THU"

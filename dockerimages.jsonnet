@@ -6,7 +6,7 @@ local dockerBuild(name, needs) = {
     {
       name: std.format('Build %s', name),
       run: std.format(|||
-        docker login -u ${{ sercrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }} quay.io
+        docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }} quay.io
         docker build -f %(name)s/Dockerfile -t quay.io/johannweging/%(name)s:latest ./%(name)s
         docker push quay.io/johannweging/%(name)s:latest
       |||, { name: name }),

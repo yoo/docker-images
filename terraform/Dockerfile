@@ -15,4 +15,4 @@ FROM hashicorp/terraform:latest
 RUN set -x \
 && mkdir -p ${HOME}/.terraform.d/plugins 
 
-COPY --from=gandi /terraform-provider-gandi ${HOME}/.terraform.d/plugins/terraform-provider-gandi
+COPY --from=gandi /terraform-provider-gandi /root/.terraform.d/plugins/terraform-provider-gandi

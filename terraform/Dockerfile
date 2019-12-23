@@ -10,9 +10,13 @@ RUN set -x \
 && chmod +x terraform-provider-gandi \
 && mv terraform-provider-gandi /
 
+FROM vault:latest as vault
+
 FROM hashicorp/terraform:latest
 
 RUN set -x \
 && mkdir -p ${HOME}/.terraform.d/plugins 
 
 COPY --from=gandi /terraform-provider-gandi /root/.terraform.d/plugins/terraform-provider-gandi
+
+COPY --from=vault /bin/vault /usr/bin/vault

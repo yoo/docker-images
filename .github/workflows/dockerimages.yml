@@ -1,4 +1,14 @@
 "jobs":
+  "homeassistant":
+    "needs": []
+    "runs-on": "ubuntu-latest"
+    "steps":
+    - "uses": "actions/checkout@v1"
+    - "name": "Build homeassistant"
+      "run": |
+        docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }} quay.io
+        docker build -f homeassistant/Dockerfile -t quay.io/johannweging/homeassistant:latest ./homeassistant
+        docker push quay.io/johannweging/homeassistant:latest
   "terraform":
     "needs": []
     "runs-on": "ubuntu-latest"

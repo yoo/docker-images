@@ -34,7 +34,7 @@ local images = [
   { image: 'vault2env', needs: [] },
   { image: 'terraform', needs: [] },
   { image: 'homeassistant', needs: [] },
-  { image: 'fluentd', needs: [''] },
+  { image: 'fluentd', needs: [] },
 ];
 
 std.manifestYamlDoc(pipeline(images))

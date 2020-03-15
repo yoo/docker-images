@@ -10,6 +10,12 @@ RUN set -x \
 && gem install fluent-plugin-concat \
 && gem sources --clear-all \
 && apk del .deps \
-&& rm -rf /home/fluent/.gem/ruby/2.3.0/cache/*.gem
+&& rm -rf /home/fluent/.gem/ruby/2.3.0/cache/*.gem 
+
+COPY init.sh  /
+RUN chmod +x /init.sh
 
 USER fluent
+
+ENTRYPOINT [ "tini", "--", "/init.sh" ]
+CMD ["fluentd"]

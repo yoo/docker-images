@@ -4,7 +4,7 @@ FROM quay.io/johannweging/vault2env as vault2env
 
 FROM alpine:latest
 
-RUN apk add --update --no-cache docker-compose docker
+RUN apk add --update --no-cache docker-compose docker openssh
 
 COPY --from=vault /bin/vault /usr/bin/vault
 

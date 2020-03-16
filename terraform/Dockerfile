@@ -12,6 +12,8 @@ RUN set -x \
 
 FROM vault:latest as vault
 
+FROM quay.io/johannweging/vault2env as vault2env
+
 FROM hashicorp/terraform:latest
 
 RUN set -x \
@@ -20,3 +22,5 @@ RUN set -x \
 COPY --from=gandi /terraform-provider-gandi /root/.terraform.d/plugins/terraform-provider-gandi
 
 COPY --from=vault /bin/vault /usr/bin/vault
+
+COPY --from=vault2env /usr/bin/vault2env /usr/bin/vault2env

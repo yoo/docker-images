@@ -1,4 +1,15 @@
 "jobs":
+  "docker-compose":
+    "needs":
+    - "vault2env"
+    "runs-on": "ubuntu-latest"
+    "steps":
+    - "uses": "actions/checkout@v1"
+    - "name": "Build docker-compose"
+      "run": |
+        docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }} quay.io
+        docker build -f docker-compose/Dockerfile -t quay.io/johannweging/docker-compose:latest ./docker-compose
+        docker push quay.io/johannweging/docker-compose:latest
   "fluentd":
     "needs": []
     "runs-on": "ubuntu-latest"
@@ -20,7 +31,8 @@
         docker build -f homeassistant/Dockerfile -t quay.io/johannweging/homeassistant:latest ./homeassistant
         docker push quay.io/johannweging/homeassistant:latest
   "terraform":
-    "needs": []
+    "needs":
+    - "vault2env"
     "runs-on": "ubuntu-latest"
     "steps":
     - "uses": "actions/checkout@v1"

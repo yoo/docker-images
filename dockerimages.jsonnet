@@ -32,9 +32,10 @@ local pipeline(images) = {
 
 local images = [
   { image: 'vault2env', needs: [] },
-  { image: 'terraform', needs: [] },
+  { image: 'terraform', needs: ['vault2env'] },
   { image: 'homeassistant', needs: [] },
   { image: 'fluentd', needs: [] },
+  { image: 'docker-compose', needs: ['vault2env'] },
 ];
 
 std.manifestYamlDoc(pipeline(images))

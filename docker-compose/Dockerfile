@@ -4,9 +4,10 @@ FROM quay.io/johannweging/vault2env as vault2env
 
 FROM alpine:edge
 
-RUN set -x\ 
+RUN set -x \ 
 	&& apk add --update --no-cache docker-compose docker openssh make jsonnet py3-pip bash \
-	&& pip3 install invoke
+	&& pip3 install invoke \
+	&& mkdir -p /root/.ssh/sockets
 
 COPY --from=vault /bin/vault /usr/bin/vault
 

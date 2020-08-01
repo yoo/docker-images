@@ -36,6 +36,7 @@ local images = [
   { image: 'homeassistant', needs: [] },
   { image: 'fluentd', needs: [] },
   { image: 'docker-compose', needs: ['vault2env'] },
+  { image: 'ansible', needs: [] },
 ];
 
 std.manifestYamlDoc(pipeline(images))

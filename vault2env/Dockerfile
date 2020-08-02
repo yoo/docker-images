@@ -14,7 +14,5 @@ RUN set -x \
  && apk add --update --no-cache dumb-init ca-certificates \
  && adduser -D vault2env
  
-USER vault2env
-
 ENTRYPOINT ["/usr/bin/dumb-init", "--", "/usr/bin/vault2env"]
 

@@ -1,6 +1,6 @@
 FROM alpine:latest AS builder
 
-ENV VAULT2ENV_VERSION=v2.0.0
+ENV VAULT2ENV_VERSION=v2.1.0
 
 RUN set -x \
  && apk add --update curl gzip tar \

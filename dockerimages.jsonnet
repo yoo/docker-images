@@ -37,6 +37,7 @@ local images = [
   { image: 'fluentd', needs: [] },
   { image: 'docker-compose', needs: ['vault2env'] },
   { image: 'ansible', needs: [] },
+  { image: 'openvpn', needs: [] },
 ];
 
 std.manifestYamlDoc(pipeline(images))

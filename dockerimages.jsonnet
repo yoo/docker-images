@@ -38,6 +38,7 @@ local images = [
   { image: 'docker-compose', needs: ['vault2env'] },
   { image: 'ansible', needs: [] },
   { image: 'openvpn', needs: [] },
+  { image: 'postgres', needs: [] },
 ];
 
 std.manifestYamlDoc(pipeline(images))

@@ -50,6 +50,16 @@
         docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }} quay.io
         docker build -f openvpn/Dockerfile -t quay.io/johannweging/openvpn:latest ./openvpn
         docker push quay.io/johannweging/openvpn:latest
+  "postgres":
+    "needs": []
+    "runs-on": "ubuntu-latest"
+    "steps":
+    - "uses": "actions/checkout@v1"
+    - "name": "Build postgres"
+      "run": |
+        docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }} quay.io
+        docker build -f postgres/Dockerfile -t quay.io/johannweging/postgres:latest ./postgres
+        docker push quay.io/johannweging/postgres:latest
   "terraform":
     "needs":
     - "vault2env"

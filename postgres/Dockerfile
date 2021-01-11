@@ -16,3 +16,4 @@ RUN set -x \
 && chmod +x /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]
+CMD ["postgres"]

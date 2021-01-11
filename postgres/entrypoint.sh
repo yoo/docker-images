@@ -21,4 +21,4 @@ fscrypt unlock --user=root --key="/secrets/fscrypt_key" /data/postgres || echo "
 export PGDATA="/data/postgres/13"
 mkdir -p "${PGDATA}"
 
-exec /docker-entrypoint.sh
+exec docker-entrypoint.sh $@

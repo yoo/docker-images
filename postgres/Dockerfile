@@ -6,3 +6,5 @@ RUN set -x \
 && apt update -y \
 && apt install -y fscrypt \
 && chmod +x /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]

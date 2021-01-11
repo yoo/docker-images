@@ -16,7 +16,7 @@ test -d /data/.fscrypt || {
 	fscrypt encrypt --source=raw_key --user=root --name=key --key="/secrets/fscrypt_key" --skip-unlock /data/postgres
 }
 
-fscrypt unlock --user=root --key="/secrets/fscrypt_key" /data/postgres
+fscrypt unlock --user=root --key="/secrets/fscrypt_key" /data/postgres || echo "allready unlocked"
 
 export PGDATA="/data/postgres/13"
 mkdir -p "${PGDATA}"

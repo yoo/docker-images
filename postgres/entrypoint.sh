@@ -3,7 +3,7 @@ set -e
 
 fscrypt setup --force
 
-blkid /dev/xvda || mkfs.ext4 /dev/xvda
+blkid /dev/xvda | grep -q ext4 || mkfs.ext4 /dev/xvda
 
 mkdir -p /data
 mount /dev/xvda /data
@@ -20,5 +20,8 @@ fscrypt unlock --user=root --key="/secrets/fscrypt_key" /data/postgres || echo "
 
 export PGDATA="/data/postgres/13"
 mkdir -p "${PGDATA}"
+
+chmod 755 /data
+chmod 755 /data/postgres
 
 exec docker-entrypoint.sh $@
